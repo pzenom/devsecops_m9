@@ -1,0 +1,11 @@
+---
+
+minikube_version: 1.12.1
+kubectl_version: 1.18.6
+docker_version: 19.03.11
+helm_version: 3.2.4
+
+create_containers: 4
+default_container_name: docker
+default_container_image: ubuntu
+default_container_command: sleep 1d

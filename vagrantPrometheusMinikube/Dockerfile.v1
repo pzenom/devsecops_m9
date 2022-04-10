@@ -1,0 +1,9 @@
+FROM python
+
+RUN pip install prometheus-client
+
+COPY demo1.py /demo.py
+
+EXPOSE 8000 8001
+
+ENTRYPOINT [ "python", "demo.py" ]

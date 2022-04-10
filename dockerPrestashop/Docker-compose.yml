@@ -1,0 +1,35 @@
+version: "3"
+
+networks: 
+    presta-net:
+      driver: bridge
+
+services: 
+    mysql:
+        image: mysql:5.7
+        container_name: serv-mysql  
+        tty: true
+        ports:
+            - "4306:3306"
+        volumes:
+            - "./www/mysql/:/var/lib/mysql:rw"
+        environment: 
+            MYSQL_ROOT_PASSWORD: admin123.
+            MYSQL_DATABASE: prestashop
+        networks: 
+            - presta-net
+    web:
+        image: prestashop/prestashop
+        container_name: serv-web
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - "./www/httpdocs:/var/www/html:rw"
+        environment:
+            DB_SERVER: serv-mysql 
+        depends_on:  
+            - mysql
+        networks: 
+            - presta-net
+

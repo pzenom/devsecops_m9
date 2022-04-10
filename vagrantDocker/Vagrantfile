@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 8192
+    vb.cpus = 4
+  end
+
+  config.vm.box = "ubuntu/focal64"
+  # Esta parte es para que la maquina windows se entere
+  config.vm.network "public_network",
+    use_dhcp_assigned_default_route: true
+  # config.vm.network "public_network", ip: "192.168.1.165"
+  config.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 443, host: 443, host_ip: "127.0.0.1"
+  
+  # Docker Provision Install
+  config.vm.provision "shell", inline: <<-DOCKER
+    apt-get update
+    echo "1. UPDATED"
+    sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+    echo "2. INSTALLED"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg --yes
+    echo "3. CURLed"
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "4. SGINATURE UPDATED"
+    apt-get update
+    apt-get install -y docker-ce docker-ce-cli containerd.io
+    usermod -aG docker vagrant
+    apt-get upgrade -y
+    echo "5.INSTALL DOCker compose"
+    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+    echo "5.END PROVISION SCRIPT"
+  DOCKER
+
+end

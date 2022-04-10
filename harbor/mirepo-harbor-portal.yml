@@ -1,0 +1,43 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: mirepo
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2022-04-05T19:06:02Z"
+  labels:
+    app: harbor
+    app.kubernetes.io/managed-by: Helm
+    chart: harbor
+    heritage: Helm
+    release: mirepo
+  name: mirepo-harbor-portal
+  namespace: default
+  resourceVersion: "49222"
+  uid: 359d08bc-0aa5-4292-a99f-7ea517317797
+spec:
+  clusterIP: 10.108.124.98
+  clusterIPs:
+  - 10.108.124.98
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32443
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: harbor
+    component: portal
+    release: mirepo
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Hudson-Version: 2.249
+Plugin-Dependencies: snakeyaml-api:1.29.1,bouncycastle-api:2.25,jackso
+ n2-api:2.12.4
+Implementation-Title: kubernetes-client-api
+Long-Name: Kubernetes Client API Plugin
+Implementation-Version: 5.12.1-187.v577c3e368fb_6
+Group-Id: org.jenkins-ci.plugins
+Minimum-Java-Version: 1.8
+Support-Dynamic-Loading: true
+Plugin-License-Name: The Apache Software License, Version 2.0
+Specification-Title: This plugin provides the fabric8.io Kubernetes Cl
+ ient API to plugins.
+Plugin-ScmUrl: https://github.com/jenkinsci/kubernetes-client-api-plug
+ in
+Plugin-Version: 5.12.1-187.v577c3e368fb_6
+Jenkins-Version: 2.249
+Url: https://github.com/jenkinsci/kubernetes-client-api-plugin
+Short-Name: kubernetes-client-api
+Plugin-License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
+Plugin-Developers: 
+Extension-Name: kubernetes-client-api
+Build-Jdk-Spec: 1.8
+Created-By: Maven Archiver 3.5.2
+

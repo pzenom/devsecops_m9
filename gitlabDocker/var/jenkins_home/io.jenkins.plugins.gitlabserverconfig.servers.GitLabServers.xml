@@ -1,0 +1,14 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<io.jenkins.plugins.gitlabserverconfig.servers.GitLabServers plugin="gitlab-branch-source@1.5.9">
+  <servers>
+    <io.jenkins.plugins.gitlabserverconfig.servers.GitLabServer>
+      <name>default</name>
+      <serverUrl>http://gitlab</serverUrl>
+      <manageWebHooks>true</manageWebHooks>
+      <manageSystemHooks>false</manageSystemHooks>
+      <credentialsId>gitlab</credentialsId>
+      <hooksRootUrl>http://jenkins:8080</hooksRootUrl>
+      <secretToken>{AQAAABAAAAAQE/rU8x+HAU7tkbHNXxDNs8n5E6LIETa84WGqEPiP5o4=}</secretToken>
+    </io.jenkins.plugins.gitlabserverconfig.servers.GitLabServer>
+  </servers>
+</io.jenkins.plugins.gitlabserverconfig.servers.GitLabServers>

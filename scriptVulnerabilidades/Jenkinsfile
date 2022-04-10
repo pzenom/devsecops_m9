@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Compilacion') {
+            agent {
+                docker {
+                    image: "nginx"kube
+                }
+            }
+            steps {
+                echo 'Building...x'
+                sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin'
+                sh 'grype nginx'
+            }
+        }
+        stage ('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+
+    }
+}

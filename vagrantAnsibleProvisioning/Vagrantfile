@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.define "devsecops-pfm" do |devbox|
+    devbox.vm.box = "ubuntu/focal64"
+    devbox.vm.hostname = "minikube"
+
+    devbox.vm.network "private_network", ip: "192.168.60.11"
+    devbox.vm.network "public_network"
+    devbox.vm.network "forwarded_port", guest: 80, host: 8080
+
+    devbox.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+    
+    devbox.vm.provider "virtualbox" do |v|
+      v.memory = 8192
+      v.cpus = 2
+    end
+  end
+end
+
